@@ -1,0 +1,11 @@
+.App{
+  display: flex;
+}
+*{
+  margin: 0;
+  padding: 0;
+  border: none;
+  outline: none;
+  box-sizing: border-box ;
+  font-family: "poppins, sans-serif";
+}
