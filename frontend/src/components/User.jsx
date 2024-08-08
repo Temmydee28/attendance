@@ -7,7 +7,7 @@ const UserListComponent = () => {
 
   useEffect(() => {
     // Make a GET request to the server endpoint
-    axios.get('http://localhost:8001/users')
+    axios.get('https://attendance-rose.vercel.app/users')
       .then(response => {
         // Handle the received data
         setUsers(response.data);
