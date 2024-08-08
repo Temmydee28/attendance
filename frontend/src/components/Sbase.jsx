@@ -18,7 +18,7 @@ const StudentBase = () => {
         const fetchUserData = async () => {
             try {
                 const token = localStorage.getItem('token');
-                const response = await axios.get('http://localhost:8001/srecord', {
+                const response = await axios.get('https://attendance-rose.vercel.app/srecord', {
                     headers: {
                         Authorization: token,
                     }
