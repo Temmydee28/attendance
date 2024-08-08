@@ -25,9 +25,17 @@ const corsOptions = {
   origin: 'https://attendance-app-eight.vercel.app',
   methods: ["POST", "GET"],
   credentials: true,
+  allowedHeaders: ['Content-Type', 'Authorization'], // Add any other headers you expect to receive
 };
 
 app.use(cors(corsOptions));
+
+// Middleware to log headers for debugging
+app.use((req, res, next) => {
+  console.log('Request Headers:', req.headers);
+  next();
+});
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(session({
