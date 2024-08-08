@@ -36,7 +36,7 @@ function LSignin() {
     e.preventDefault();
 
     try {
-      const response = await axios.post("http://localhost:8001/Lsignin", { ...signInData });
+      const response = await axios.post("https://attendance-rose.vercel.app/Lsignin", { ...signInData });
       const {token } = response.data;
       localStorage.setItem('token', token);
        if (response.status === 200) {
