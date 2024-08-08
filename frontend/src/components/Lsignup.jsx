@@ -100,7 +100,7 @@ if (type === "checkbox") {
     e.preventDefault();
 
     try {
-      const response = await axios.post("http://localhost:8001/LSignup", { ...signUpData });
+      const response = await axios.post("https://attendance-rose.vercel.app/LSignup", { ...signUpData });
       if (response.status === 201) {
         alert("user registered");
 
