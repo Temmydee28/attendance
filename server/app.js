@@ -10,7 +10,6 @@ import session from 'express-session';
 import jwt from 'jsonwebtoken';
 
 const app = express();
-
 const PORT = 8001;
 const myConnectionUrl = process.env.MONGODB_CONNECT_URL;
 
@@ -22,14 +21,13 @@ mongoose.connect(myConnectionUrl, { useNewUrlParser: true })
     console.log(`Error connecting to MongoDB: ${error}`);
   });
 
+const corsOptions = {
+  origin: 'https://attendance-app-eight.vercel.app',
+  methods: ["POST", "GET"],
+  credentials: true,
+};
 
-  const corsOptions = {
-    origin: ['https://attendance-app-eight.vercel.app'],
-    methods: ["POST", "GET"],
-    credentials: true, // This allows credentials (cookies) to be sent with the request
-  };
-  
-  app.use(cors(corsOptions));
+app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(session({
@@ -37,7 +35,6 @@ app.use(session({
   resave: false,
   saveUninitialized: false,
 }));
-
 
 const verifyToken = (req, res, next) => {
   const token = req.header('Authorization');
@@ -71,17 +68,16 @@ const verifyTokenn = (req, res, next) => {
   }
 };
 
-app.post("/", cors(),  userController.login);
-app.post("/signup", cors(), userController.signup);
-app.post("/LSignup", cors(), userController.LSignup);
-app.post("/LSignin", cors(), userController.LSignin);
-app.get("/users", cors(), verifyToken, userController.users);
-app.get("/srecord", cors(), verifyToken, tableController.Srecord);
- app.get("/lrecord", cors(), verifyTokenn, tableController.Lrecord);
-app.get("/lecturers", cors(), verifyTokenn, userController.lecturer);
-app.post("/submitattendance", cors(), formController.studentForm);
-app.post("/createattendance", cors(), formController.lecturerForm);
-
+app.post("/", userController.login);
+app.post("/signup", userController.signup);
+app.post("/LSignup", userController.LSignup);
+app.post("/LSignin", userController.LSignin);
+app.get("/users", verifyToken, userController.users);
+app.get("/srecord", verifyToken, tableController.Srecord);
+app.get("/lrecord", verifyTokenn, tableController.Lrecord);
+app.get("/lecturers", verifyTokenn, userController.lecturer);
+app.post("/submitattendance", formController.studentForm);
+app.post("/createattendance", formController.lecturerForm);
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
