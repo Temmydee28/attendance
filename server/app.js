@@ -24,7 +24,8 @@ mongoose.connect(myConnectionUrl, { useNewUrlParser: true })
 
 
   const corsOptions = {
-    origin: 'https://attendance-app-eight.vercel.app',
+    origin: ['https://attendance-app-eight.vercel.app'],
+    methods: ["POST", "GET"],
     credentials: true, // This allows credentials (cookies) to be sent with the request
   };
   
