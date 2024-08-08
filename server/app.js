@@ -5,7 +5,6 @@ import mongoose from 'mongoose';
 import userController from './controllers/user.js';
 import formController from './controllers/form.js';
 import tableController from './controllers/table.js';
-import customPassport from './config/passportconfig.js';
 import session from 'express-session';
 import jwt from 'jsonwebtoken';
 
@@ -23,19 +22,12 @@ mongoose.connect(myConnectionUrl, { useNewUrlParser: true })
 
 const corsOptions = {
   origin: 'https://attendance-app-eight.vercel.app',
-  methods: ["POST", "GET"],
+  methods: ["POST", "GET", "OPTIONS"], // Ensure OPTIONS method is allowed
   credentials: true,
-  allowedHeaders: ['Content-Type', 'Authorization'], // Add any other headers you expect to receive
+  allowedHeaders: ['Content-Type', 'Authorization'],
 };
 
 app.use(cors(corsOptions));
-
-// Middleware to log headers for debugging
-app.use((req, res, next) => {
-  console.log('Request Headers:', req.headers);
-  next();
-});
-
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(session({
@@ -43,6 +35,9 @@ app.use(session({
   resave: false,
   saveUninitialized: false,
 }));
+
+// Middleware to handle OPTIONS requests
+app.options('*', cors(corsOptions));
 
 const verifyToken = (req, res, next) => {
   const token = req.header('Authorization');
