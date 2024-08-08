@@ -18,7 +18,7 @@ const DataTable = () => {
         const fetchUserData = async () => {
             try {
                 const token = localStorage.getItem('token');
-                const response = await axios.get('https://attendance-rose.vercel.app//lrecord', {
+                const response = await axios.get('https://attendance-rose.vercel.app/lrecord', {
                     headers: {
                         Authorization: token,
                     }
