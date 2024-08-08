@@ -175,7 +175,7 @@ useEffect(() => {
     const fetchUserData = async () => {
       try {
         const token = localStorage.getItem('token');
-        const response = await axios.get('http://localhost:8001/users', {
+        const response = await axios.get('https://attendance-rose.vercel.app/users', {
           headers: {
             Authorization: token,
           }
@@ -230,7 +230,7 @@ useEffect(() => {
     e.preventDefault();
 
     try {
-      const response = await axios.post("http://localhost:8001/submitattendance", { ...attendanceData });
+      const response = await axios.post("https://attendance-rose.vercel.app/submitattendance", { ...attendanceData });
 
       if (response.status === 201) {
        alert( <Stack sx={{ width: '100%' }} spacing={2}>
