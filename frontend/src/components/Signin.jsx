@@ -37,7 +37,7 @@ function Signin() {
     e.preventDefault();
 
     try {
-      const response = await axios.post("http://localhost:8001/", { ...signInData });
+      const response = await axios.post("https://attendance-rose.vercel.app/", { ...signInData });
       const {token } = response.data;
       localStorage.setItem('token', token);
        if (response.status === 200) {
