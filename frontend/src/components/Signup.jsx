@@ -86,7 +86,7 @@ function SignUp() {
     e.preventDefault();
 
     try {
-      const response = await axios.post("http://localhost:8001/signup", { ...signUpData });
+      const response = await axios.post("https://attendance-rose.vercel.app/signup", { ...signUpData });
       if (response.status === 201) {
         alert("user registered");
 
