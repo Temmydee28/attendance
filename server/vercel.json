@@ -10,14 +10,15 @@
       {
         "src": "/(.*)",
         "dest": "/"
-      }  ]
-"cors":[
-    {
+      }
+
+    ],
+    "cors":[
+      {
     "enabled": true,
     "origins": ["https://attendance-app-eight.vercel.app"],
     "methods": ["GET", "POST", "PUT"],
-    "headers": ["Content-Type", "Authorization"],
-    "credentials": true
-  }
-]
+    "headers": ["Content-Type", "Authorization"] 
+   }
+    ]
 }
